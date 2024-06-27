@@ -26,9 +26,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.bniqrcase.QRPay.Persentation.Util.Components.myTopAppbar
+import com.example.bniqrcase.data.helper.MyDatabaseHelper
+import com.example.bniqrcase.data.helper.insertHistory
 import com.example.bniqrcase.ui.theme.BNIDarkBlue
 import com.example.bniqrcase.ui.theme.BNIQRCaseTheme
+import java.io.BufferedReader
 import java.io.IOException
+import java.io.InputStreamReader
 import java.io.OutputStreamWriter
 
 class PaymentActivity : ComponentActivity() {
@@ -114,7 +118,7 @@ class PaymentActivity : ComponentActivity() {
             putString("SALDO_ANDA", newSaldo.toString())
         }.apply()
 
-        writeToFile(this)
+        insertHistory( this ,nameMerchant, trxNominal)
 
         val i: Intent = Intent(
             this@PaymentActivity,
@@ -124,22 +128,7 @@ class PaymentActivity : ComponentActivity() {
         startActivity(i)
     }
 
-    fun writeToFile(context: Context) {
-        try {
-            val outputStreamWriter = OutputStreamWriter(
-                context.openFileOutput("QRAppsData.txt", MODE_PRIVATE)
-            )
 
-            var data = "\"Merchant\":\"$nameMerchant\",\"Nominal\":\"$trxNominal\"},";
-
-            outputStreamWriter.write(data)
-            outputStreamWriter.close()
-
-            return
-        } catch (e: IOException) {
-            Log.e("Exception", "File write failed: ${e.toString()}")
-        }
-    }
 
 
 }

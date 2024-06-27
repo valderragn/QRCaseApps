@@ -115,62 +115,46 @@ class QRActivity : ComponentActivity() {
                     floatingActionButtonPosition = FabPosition.Center
 
                 ) { innerPadding ->
-                    Column(
-                        verticalArrangement = Arrangement.SpaceBetween
-                    ) {
+
                         Column(
                             modifier = Modifier
                                 .fillMaxSize()
                                 .offset(x = 30.dp, y = 20.dp)
                                 .padding(innerPadding),
-                            verticalArrangement = Arrangement.Top,
+                            verticalArrangement = Arrangement.SpaceBetween,
                             horizontalAlignment = Alignment.Start,
                         ) {
-                            Text(text = "Saldo Anda : ",
-                                fontSize = 30.sp,
-                                fontWeight = FontWeight.Normal)
-                            Text(text = textResult.value,
-                                fontSize = 30.sp,
-                                fontWeight = FontWeight.Bold)
-                        }
-                        Row (
-                            horizontalArrangement = Arrangement.End,
-                            modifier = Modifier.offset(x = 30.dp, y = 0.dp)
-                        ) {
-                            Button(onClick = {gotoHistory()}) {
-                                Icon(painter = painterResource(id = R.drawable.riwayat_ogo), contentDescription ="Riwayat")
+                            Column {
+                                Text(text = "Saldo Anda : ",
+                                    fontSize = 30.sp,
+                                    fontWeight = FontWeight.Normal)
+                                Text(text = textResult.value,
+                                    fontSize = 30.sp,
+                                    fontWeight = FontWeight.Bold)
+                            }
+                            Row (
+                                horizontalArrangement = Arrangement.Start,
+                                modifier = Modifier.offset(x = 0.dp, y = -20.dp)
+                            ) {
+                                Button(onClick = {gotoHistory()}) {
+                                    Icon(painter = painterResource(id = R.drawable.riwayat_ogo), contentDescription ="Riwayat")
 
+                                }
                             }
                         }
 
-                    }
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .offset(x = 30.dp, y = 20.dp)
-                            .padding(innerPadding),
-                        verticalArrangement = Arrangement.Top,
-                        horizontalAlignment = Alignment.Start,
-                    ) {
-                        Text(text = "Saldo Anda : ",
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Normal)
-                        Text(text = textResult.value,
-                            fontSize = 30.sp,
-                            fontWeight = FontWeight.Bold)
-                    }
+
                 }
             }
         }
     }
 
-    @SuppressLint("SuspiciousIndentation")
     private fun gotoHistory() {
         val i: Intent = Intent(
             this@QRActivity,
             HistoryActivity::class.java
         )
-            startActivity(i)
+        startActivity(i)
     }
 
     private fun DetermineSaldo() {
