@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BNIQRCase</string>
+    <string name="title_activity_qractivity">QRActivity</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+    <string name="title_activity_acknowledgement">Acknowledgement</string>
+    <string name="title_activity_ack">AckActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+</resources>
